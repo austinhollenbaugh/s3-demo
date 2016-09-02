@@ -1,10 +1,10 @@
 {
   "name": "s3-demo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,14 @@
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "massive": "^2.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinhollenbaugh/s3-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/austinhollenbaugh/s3-demo/issues"
+  },
+  "homepage": "https://github.com/austinhollenbaugh/s3-demo#readme",
+  "description": ""
 }
