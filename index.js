@@ -25,6 +25,7 @@ app.use('/node_modules', express.static('./node_modules'));
 
 
 app.post('/api/newimage', function(req, res, next) {
+  console.log('hit post endpoint');
   const buf = new Buffer(req.body.imageBody.replace(/^data:image\/\w+;base64,/, ''), 'base64');
   //replaces that bit with an empty string, and then tells it it's a base64 string
 

@@ -1,5 +1,5 @@
 angular.module('s3Demo', [])
-.directive('fileRead', function() {
+.directive('fileRead', function(dataService) {
   return {
     restrict: 'A',
     link: function(scope, elem, attrs) {
@@ -9,7 +9,29 @@ angular.module('s3Demo', [])
         reader.readAsDataURL(changeEvent.target.files[0]);
         reader.onload = function(loadEvent) {
           var rawData = loadEvent.target.result; // <-- result is the image base64 string
-          console.log(elem, rawData);
+          console.log('rawData', rawData);
+          console.log('element', elem);
+
+          var tempArray = elem[0].value.split('\\');
+          var fileName = tempArray[tempArray.length - 1];
+
+          // var imageExtension = rawData.split(';')[0].split('/');
+          // var fileName= imageExtension[imageExtension.length - 1];
+          //these two lines are parsing the data to grab the name of the file
+          // console.log('image extension', imageExtension);
+          console.log('filename', fileName);
+
+          // var tempArray = elem['context'].value.split('\\');
+          // var fileName = tempArray[tempArray.length - 1];
+
+        dataService.storeImage(rawData, fileName)
+        .then(function (result) {
+          console.log('result', result.data);
+          scope.images.push(result.data.Location);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
         }
 
       })
@@ -19,9 +41,10 @@ angular.module('s3Demo', [])
 .service('dataService', function($http) {
   this.storeImage = function(rawData, fileName) {
 
-    var imageExtension = imageData.split(';')[0].split('/')
-    imageExtension = imageExtension[imageExtension.length - 1];
- //these two lines are parsing the data to grab the name of the file
+   var imageExtension = rawData.split(';')[0].split('/')
+      imageExtension = imageExtension[imageExtension.length - 1];
+   console.log('image extension', imageExtension);
+   //these two lines are parsing the data to grab the name of the file
     
     var newImage = {
       imageName: fileName,

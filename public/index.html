@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./styles/normalize.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./styles/skeleton.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
+  <body ng-controller="mainCtrl">
     <div class="container">
       <div class="row">
         <h3>S3 Demo</h3>
@@ -14,18 +14,16 @@
       <div class="row">
         <input type="file" file-read images="images" accept="image/*">
 
-        <!-- <img ng-src="" alt="" />
-
         <div ng-repeat="image in images">
-          <img ng-src="{image.Location}" alt="" />
-        </div> -->
-        <!-- add ng-repeat to repeat over array of image files stored by that user-->
-        <!--  img.src or ng-src -->
+          <img ng-src="{{image}}" alt="" />
+        </div>
+
       </div>
     </div>
 
     <script src="node_modules/angular/angular.js" charset="utf-8"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js" charset="utf-8"></script>
     <script src="./app.js" charset="utf-8"></script>
+    <script type="text/javascript" src="mainCtrl.js"></script>
   </body>
 </html>
